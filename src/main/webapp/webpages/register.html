@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>注册</title>
+	<link href="/mykingo/webpages/assets/css/register.css" rel='stylesheet' type='text/css' />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+<div class="main">
+	<!-----start-main---->
+	<div class="inset">
+		<!--<div class="social-icons">
+			<div class="span"><a href="#"><img src="/mykingo/webpages/assets/images/fb.png" alt=""/><i>Connect with Facebook </i><div class="clear"></div></a></div>
+			<div class="span1"><a href="#"><img src="/mykingo/webpages/assets/images/t-bird.png" alt=""/><i>Connect with Twitter</i><div class="clear"></div></a></div>
+			<div class="clear"></div>
+		</div>-->
+	</div>
+	<h2 style="font-size: 30px; font-family: 幼圆;">Kingo注册</h2>
+	<form id="my_form">
+		<div class="lable">
+			<input type="text" class="text" placeholder="用户名" id="username" name="username">
+		</div>
+
+		<div class="lable">
+			<input type="password" class="text" placeholder="密码" id="password" name="password">
+		</div>
+
+		<div class="lable">
+			<input type="text" class="text" placeholder="真实姓名" id="realname" name="realname">
+		</div>
+
+		<div class="lable">
+			<input type="email" class="text" placeholder="email" name="email">
+		</div>
+
+		<div class="lable">
+			<input type="number" class="text" placeholder="电话号码" id="phonenumber" name="phonenumber">
+		</div>
+
+		<div class="clear"> </div>
+
+		<h2><span><a href="/mykingo/index/login" style="color: #ffffff; float: left;position: relative; top: -8px;">Goooo & 登录</a> </span></h2>
+
+		<div class="submit">
+			<input type="submit" value="创建账户" style="font-family: 幼圆;">
+		</div>
+		<div class="clear"> </div>
+	</form>
+	<!-----//end-main---->
+</div>
+
+</body>
+<script src="/mykingo/webpages/assets/vendor/js/jquery.min.js"></script>
+<script>
+
+
+    $(function(){
+
+        /** 点击注册 */
+        $("#my_form").submit(function (e) {
+            e.preventDefault();
+
+            $.post("/mykingo/index/newuser", $("#my_form").serialize(), function (data) {
+                if(data.status == 0){
+                    alert(data.msg);
+                }else{
+                    location.href = data.url;
+                }
+            });
+
+        });
+
+    });
+
+</script>
+</html>

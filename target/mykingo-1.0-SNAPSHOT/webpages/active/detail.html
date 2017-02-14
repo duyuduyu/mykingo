@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8" />
+
+    <title>Dashboard | Nadhif - Responsive Admin Template</title>
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Import google fonts -->
+    <link href="http://fonts.useso.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="../webpages/assets/ico/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="../webpages/assets/ico/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="../webpages/assets/ico/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="../webpages/assets/ico/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../webpages/assets/ico/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="../webpages/assets/ico/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="../webpages/assets/ico/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="../webpages/assets/ico/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="../webpages/assets/ico/apple-touch-icon-152x152.png" />
+
+    <!-- start: CSS file-->
+
+    <!-- Vendor CSS-->
+    <link href="../webpages/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../webpages/assets/vendor/skycons/css/skycons.css" rel="stylesheet" />
+    <link href="../webpages/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Plugins CSS-->
+    <link href="../webpages/assets/plugins/bootkit/css/bootkit.css" rel="stylesheet" />
+    <link href="../webpages/assets/plugins/scrollbar/css/mCustomScrollbar.css" rel="stylesheet" />
+    <link href="../webpages/assets/plugins/fullcalendar/css/fullcalendar.css" rel="stylesheet" />
+    <link href="../webpages/assets/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css" rel="stylesheet" />
+    <link href="../webpages/assets/plugins/xcharts/css/xcharts.min.css" rel="stylesheet" />
+    <link href="../webpages/assets/plugins/morris/css/morris.css" rel="stylesheet" />
+
+    <!-- Theme CSS -->
+    <link href="../webpages/assets/css/jquery.mmenu.css" rel="stylesheet" />
+
+    <!-- Page CSS -->
+    <link href="../webpages/assets/css/style.css" rel="stylesheet" />
+    <link href="../webpages/assets/css/add-ons.min.css" rel="stylesheet" />
+
+    <!-- bootstrap table -->
+    <link href="../webpages/assets/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+
+    <!-- end: CSS file-->
+
+    <!-- Head Libs -->
+    <script src="../webpages/assets/plugins/modernizr/js/modernizr.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+
+<div class="copyrights"></div>
+<!-- Start: Content -->
+<div class="container-fluid content">
+
+    <div class="row">
+
+        <!-- Main Page -->
+        <div class="main ">
+
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12">
+
+                    <div class="panel bk-widget bk-border-off">
+
+                        <div class="panel-body text-center bk-padding-top-20 bk-wrapper bk-bg-white">
+
+                            <table id="_active">
+
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- End Main Page -->
+
+    </div>
+</div>
+<!--/container-->
+
+
+<div id="_toolbar" class="btn-group">
+    <select id="_chapp">
+        <option value="all">全部</option>
+        <option value="kingo">kingo</option>
+        <option value="kingoapk">kingoapk</option>
+    </select>
+
+    <input id="start_date" class="Wdate" type="text" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'end_date\')||\'2020-10-01\'}'})" placeholder="开始日期"/>
+
+    <input id="end_date" class="Wdate" type="text" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'start_date\')}',maxDate:'2020-10-01'})" placeholder="结束日期"/>
+
+    <button id="_search" onclick="searchByDate()">查询</button>
+</div>
+
+
+<!-- start: JavaScript-->
+<!-- Vendor JS-->
+<script src="../webpages/assets/vendor/js/jquery.min.js"></script>
+<script src="../webpages/assets/vendor/js/jquery-2.1.1.min.js"></script>
+<script src="../webpages/assets/vendor/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="../webpages/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../webpages/assets/vendor/skycons/js/skycons.js"></script>
+
+<!-- Plugins JS-->
+<script src="../webpages/assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js"></script>
+<script src="../webpages/assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="../webpages/assets/plugins/moment/js/moment.min.js"></script>
+<script src="../webpages/assets/plugins/fullcalendar/js/fullcalendar.min.js"></script>
+<script src="../webpages/assets/plugins/touchpunch/js/jquery.ui.touch-punch.min.js"></script>
+<script src="../webpages/assets/plugins/xcharts/js/xcharts.min.js"></script>
+<script src="../webpages/assets/plugins/autosize/jquery.autosize.min.js"></script>
+<script src="../webpages/assets/plugins/placeholder/js/jquery.placeholder.min.js"></script>
+<script src="../webpages/assets/plugins/raphael/js/raphael.min.js"></script>
+<script src="../webpages/assets/plugins/morris/js/morris.min.js"></script>
+<script src="../webpages/assets/plugins/gauge/js/gauge.min.js"></script>
+
+<!-- Theme JS -->
+<script src="../webpages/assets/js/jquery.mmenu.min.js"></script>
+<script src="../webpages/assets/js/core.min.js"></script>
+
+<!-- bootstrap table -->
+<script src="../webpages/assets/plugins/bootstrap-table/bootstrap-table.js"></script>
+<script src="../webpages/assets/plugins/bootstrap-table/bootstrap-table-zh-CN.min.js"></script>
+
+<!-- bootstrap table -->
+<script src="../webpages/assets/plugins/my97datepicker/WdatePicker.js"></script>
+
+<!-- end: JavaScript-->
+
+<script>
+
+    $(function(){
+
+        initTable("/mykingo/active/findPage");
+
+    });
+
+
+    /** 点击查询 */
+    function searchByDate(){
+        var chapp = $("#_chapp").val();
+        var sDate = $("#start_date").val();
+        var eDate = $("#end_date").val();
+        $("#_active").bootstrapTable("destroy");
+        initTable("/mykingo/active/findDate?sDate=" + sDate + "&eDate=" + eDate + "&chapp=" + chapp);
+    }
+
+    /** 初始化 表格 */
+    function initTable(url) {
+        $("#_active").bootstrapTable({
+            url : url,
+            dataType : "json",
+            pageSize: 20,
+            pagination : true,
+            clickToSelect: true,
+            toolbar : '#_toolbar',
+            sidePagination : 'server',//设置为服务器端分页
+            columns : [ {
+                radio : 'ID',
+                align : 'center',
+            }, {
+                field : 'curl',
+                align : 'center',
+                title : 'IP',
+            }, {
+                field : 'cofferid',
+                align : 'center',
+                title : 'orffer_id',
+            }, {
+                field : 'insertdate',
+                align : 'center',
+                title : '入库时间',
+                formatter: function (value, row, index) {
+                    var unixTimestamp = new Date(value);
+                    var commonTime = unixTimestamp.toLocaleString();
+                    return commonTime;
+                }
+            }, {
+                field : 'cprice',
+                align : 'center',
+                title : '单价(元)'
+            }, {
+                field : 'caffsub',
+                align : 'center',
+                title : 'aff_sub',
+            }, {
+                field : 'cgaid',
+                align : 'center',
+                title : 'gaid',
+            } ]
+        });
+    }
+
+</script>
+
+
+</body>
+
+</html>
