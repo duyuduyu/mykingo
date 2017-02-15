@@ -66,6 +66,10 @@ public class UserController {
         return new ModelAndView("login");
     }
 
+    @RequestMapping("logout")
+    public ModelAndView logout(){
+        return new ModelAndView("login");
+    }
 
     @RequestMapping("register")
     public ModelAndView register(){
