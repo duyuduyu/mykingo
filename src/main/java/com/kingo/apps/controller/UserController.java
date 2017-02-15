@@ -77,101 +77,101 @@ public class UserController {
         return new ModelAndView("nop");
     }
 
-//    @RequestMapping("newuser")
-//    @ResponseBody
-//    public JSONObject newUser(@Valid Users users, BindingResult result){
-//        JSONObject jsonObject = new JSONObject();
-//        try {
-//            if(result.hasErrors()){
-//                List<ObjectError> eList = result.getAllErrors();
-//                String errorMsg = eList.get(0).getDefaultMessage();
-//                jsonObject.put("status", 0);
-//                jsonObject.put("msg", errorMsg);
-//            }else{
-//                users.setGistime(new Date());
-//                userService.register(users);
-//                ExceptionUtil.getSuccess(jsonObject);
-//                jsonObject.put("url", "/mykingo/index/login");
-//            }
-//        }catch (Exception e){
-//            ExceptionUtil.getCatch(jsonObject, e);
-//        }
-//        return jsonObject;
-//    }
+    @RequestMapping("newuser")
+    @ResponseBody
+    public JSONObject newUser(@Valid Users users, BindingResult result){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            if(result.hasErrors()){
+                List<ObjectError> eList = result.getAllErrors();
+                String errorMsg = eList.get(0).getDefaultMessage();
+                jsonObject.put("status", 0);
+                jsonObject.put("msg", errorMsg);
+            }else{
+                users.setGistime(new Date());
+                userService.register(users);
+                ExceptionUtil.getSuccess(jsonObject);
+                jsonObject.put("url", "/mykingo/index/login");
+            }
+        }catch (Exception e){
+            ExceptionUtil.getCatch(jsonObject, e);
+        }
+        return jsonObject;
+    }
 
 
 
-//    @RequestMapping("auth")
-//    @ResponseBody
-//    public JSONObject auth(Users users, Model model){
-//        JSONObject jsonObject = new JSONObject();
-//        String msg;
-//        try {
-//            UsernamePasswordToken token = new UsernamePasswordToken(users.getUsername(), users.getPassword());
-//
-//            token.setRememberMe(false);
-//
-//            Subject subject = SecurityUtils.getSubject();
-//
-//            Session session = subject.getSession();
-//            try {
-//                subject.login(token);
-//                if (subject.isAuthenticated()) {
-//                    jsonObject.put("msg", "登录成功!");
-//                    jsonObject.put("state", 1);
-//                    session.setAttribute("username", users.getUsername());
-//                    return jsonObject;
-//                } else {
-//                    jsonObject.put("msg", "用户名或密码错误!");
-//                    return jsonObject;
-//                }
-//            } catch (IncorrectCredentialsException e) {
-//                msg = "登录密码错误. Password for account " + token.getPrincipal() + " was incorrect.";
-//                jsonObject.put("msg", msg);
-//                jsonObject.put("state", 0);
-//                model.addAttribute("message", msg);
-//                System.out.println(msg);
-//            } catch (ExcessiveAttemptsException e) {
-//                msg = "登录失败次数过多";
-//                jsonObject.put("msg", msg);
-//                jsonObject.put("state", 0);
-//                model.addAttribute("message", msg);
-//                System.out.println(msg);
-//            } catch (LockedAccountException e) {
-//                msg = "帐号已被锁定. The account for username " + token.getPrincipal() + " was locked.";
-//                jsonObject.put("msg", msg);
-//                jsonObject.put("state", 0);
-//                model.addAttribute("message", msg);
-//                System.out.println(msg);
-//            } catch (DisabledAccountException e) {
-//                msg = "帐号已被禁用. The account for username " + token.getPrincipal() + " was disabled.";
-//                jsonObject.put("msg", msg);
-//                jsonObject.put("state", 0);
-//                model.addAttribute("message", msg);
-//                System.out.println(msg);
-//            } catch (ExpiredCredentialsException e) {
-//                msg = "帐号已过期. the account for username " + token.getPrincipal() + "  was expired.";
-//                jsonObject.put("msg", msg);
-//                jsonObject.put("state", 0);
-//                model.addAttribute("message", msg);
-//                System.out.println(msg);
-//            } catch (UnknownAccountException e) {
-//                msg = "帐号不存在. There is no user with username of " + token.getPrincipal();
-//                jsonObject.put("msg", msg);
-//                jsonObject.put("state", 0);
-//                model.addAttribute("message", msg);
-//                System.out.println(msg);
-//            } catch (UnauthorizedException e) {
-//                msg = "您没有得到相应的授权！" + e.getMessage();
-//                jsonObject.put("msg", msg);
-//                jsonObject.put("state", 0);
-//                model.addAttribute("message", msg);
-//                System.out.println(msg);
-//            }
-//        }catch (Exception e){
-//            ExceptionUtil.getCatch(jsonObject, e);
-//        }
-//        return jsonObject;
-//    }
+    @RequestMapping("auth")
+    @ResponseBody
+    public JSONObject auth(Users users, Model model){
+        JSONObject jsonObject = new JSONObject();
+        String msg;
+        try {
+            UsernamePasswordToken token = new UsernamePasswordToken(users.getUsername(), users.getPassword());
+
+            token.setRememberMe(false);
+
+            Subject subject = SecurityUtils.getSubject();
+
+            Session session = subject.getSession();
+            try {
+                subject.login(token);
+                if (subject.isAuthenticated()) {
+                    jsonObject.put("msg", "登录成功!");
+                    jsonObject.put("state", 1);
+                    session.setAttribute("username", users.getUsername());
+                    return jsonObject;
+                } else {
+                    jsonObject.put("msg", "用户名或密码错误!");
+                    return jsonObject;
+                }
+            } catch (IncorrectCredentialsException e) {
+                msg = "登录密码错误. Password for account " + token.getPrincipal() + " was incorrect.";
+                jsonObject.put("msg", msg);
+                jsonObject.put("state", 0);
+                model.addAttribute("message", msg);
+                System.out.println(msg);
+            } catch (ExcessiveAttemptsException e) {
+                msg = "登录失败次数过多";
+                jsonObject.put("msg", msg);
+                jsonObject.put("state", 0);
+                model.addAttribute("message", msg);
+                System.out.println(msg);
+            } catch (LockedAccountException e) {
+                msg = "帐号已被锁定. The account for username " + token.getPrincipal() + " was locked.";
+                jsonObject.put("msg", msg);
+                jsonObject.put("state", 0);
+                model.addAttribute("message", msg);
+                System.out.println(msg);
+            } catch (DisabledAccountException e) {
+                msg = "帐号已被禁用. The account for username " + token.getPrincipal() + " was disabled.";
+                jsonObject.put("msg", msg);
+                jsonObject.put("state", 0);
+                model.addAttribute("message", msg);
+                System.out.println(msg);
+            } catch (ExpiredCredentialsException e) {
+                msg = "帐号已过期. the account for username " + token.getPrincipal() + "  was expired.";
+                jsonObject.put("msg", msg);
+                jsonObject.put("state", 0);
+                model.addAttribute("message", msg);
+                System.out.println(msg);
+            } catch (UnknownAccountException e) {
+                msg = "帐号不存在. There is no user with username of " + token.getPrincipal();
+                jsonObject.put("msg", msg);
+                jsonObject.put("state", 0);
+                model.addAttribute("message", msg);
+                System.out.println(msg);
+            } catch (UnauthorizedException e) {
+                msg = "您没有得到相应的授权！" + e.getMessage();
+                jsonObject.put("msg", msg);
+                jsonObject.put("state", 0);
+                model.addAttribute("message", msg);
+                System.out.println(msg);
+            }
+        }catch (Exception e){
+            ExceptionUtil.getCatch(jsonObject, e);
+        }
+        return jsonObject;
+    }
 
 }
